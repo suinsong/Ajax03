@@ -1,0 +1,42 @@
+
+<script>
+	$(document).ready(function() {
+		$('tr.mlist').click(function() {
+			var id = $(this).attr('id')
+
+			$.post('/getitem', {
+				id : id
+			}, function(result) {
+				$('#id').val(id)
+				$('#strNum').val(result.strNum)
+				$('#strName').val(result.strName)
+				$('#intGrade').val(result.intGrade)				
+				$('#strTel').val(result.strTel)
+				$('#saveBtn').val()
+			})
+		})
+
+	})
+</script>
+<table class='w3-table w3-border w3-hoverable'>
+
+	<tr>
+		<th>학번</th>
+		<th>이름</th>
+		<th>학년</th>
+		<th>전화번호</th>
+	</tr>
+
+	<% list.forEach(function(item){ %>
+	<tr class='mlist' id='<%- item._id %>'>
+		<td><%- item.strNum %></td>
+		<td><%- item.strName %></td>
+		<td><%- item.intGrade %></td>
+		<td><%- item.strTel %></td>
+
+	</tr>
+
+	<% }) %>
+
+</table>
+
